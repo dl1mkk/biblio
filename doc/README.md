@@ -16,5 +16,8 @@
   Diese Methode setzt das Einrücken des Ausgabe-Kontext in **page** um eine Stufe zurück.
 ### def indent(self): -> type(str)
   Diese Methode liefert den String für das automatische Einrücken.
-### def out(self, text):
-  Diese Methode schreibt das Argument __text__ in den Ausgabepuffer __page__.
+### def out(self, arg):
+  Diese Methode schreibt das Argument __arg__ in den Ausgabepuffer __self.page__.
+### def include(self, m=None):
+  Diese Methode fügt eine Datei (Dateiname im Argument ''m'' als 'type(str)') in den aktuellen
+  HTML-Kontext in __self.page__ ein.
