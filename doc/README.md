@@ -21,3 +21,26 @@
 ### def include(self, m=None):
   Diese Methode fügt eine Datei (Dateiname im Argument ''m'' als 'type(str)') in den aktuellen
   HTML-Kontext in __self.page__ ein.
+### def show(self):
+  Diese Methode schreibt den Inhalt des Attributs __self.page__ in das Gerät __/dev/stdout__.
+  Anschließend wird das Attribut __self.page__ wieder auf __list(' ')__ zurückgesetzt.
+### def echo(self, t):
+  Diese Methode schreibt das Argument als Ausgabe-Kommando für __/dev/stdout__ in einen String,
+  der als Variable für zusammengesetzte Strings verwendet werden kann. Dabei ist das Argument __t__
+  der Name einer __PHP-Variable__.
+### def echof(self, t):
+  Diese Methode schreibt das Argument als Ausgabe-Kommando für __/dev/stdout__ in einen String,
+  der als Variable für zusammengesetzte Strings verwendet werden kann. Dabei ist das Argument __t__
+  der Name einer __PHP-Variable__ vom Typ Gleitzahl. Ist der Inhalt der PHP-Varable (__$t__ == 0.0), 
+  dann wird der String "0.00" übergeben.
+### def echoi(self, t):
+  Diese Methode schreibt das Argument als Ausgabe-Kommando für __/dev/stdout__ in einen String,
+  der als Variable für zusammengesetzte Strings verwendet werden kann. Dabei ist das Argument __t__
+  der Name einer __PHP-Variable__ vom Typ Gleitzahl. Ist der Inhalt der PHP-Varable (__$t__ == 0), 
+  dann wird der String "0" übergeben.
+### def value(self, t):
+  Diese Methode gibt das Argument _t_ als Ausgabe-Kommando für __/dev/stdout__ in einem String
+  zurück. Das Argument __t__ muss vom __type(str)__ sein!
+### Komplexe Methoden in apphtml.py
+  Hier werden die Komplexen Methoden in der Klasse __apphtml.py__ Beschreieben.
+  
