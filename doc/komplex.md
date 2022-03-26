@@ -75,10 +75,10 @@ h.show()
   eine Fehler-Position im Traceback der betreffenden Python3-Datei ausgegeben werden.
   
   Die Argumente der Methode __error__ sind:
-  . self -------> Die Instanz der Klasse __apphtml__
-  . msg --------> Die Fehlermeldung selbst
-  . file -------> Der Dateiname, wie im Kopf der *__template-Datei__* defintiert
-  . line -------> Die Fehler-Position
+  + self -------> Die Instanz der Klasse __apphtml__
+  + msg --------> Die Fehlermeldung selbst
+  + file -------> Der Dateiname, wie im Kopf der *__template-Datei__* defintiert
+  + line -------> Die Fehler-Position
   
 ##### def prolog(self,title=None):
 ##### def z(self,x,y):
