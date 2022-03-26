@@ -1,0 +1,38 @@
+FTP-Zugang für den separaten FTP-Server!
+========================================
+
+Passwort: QTWAEVbXFbuzuGq6
+
+Benutzer: f014b242
+
+Server: w00b6ff8.kasserver.com
+
+
+FTP-Fähigkeit erwerben:
+
+$ sudo apt update
+$ sudo apt install ftpd
+
+FTP-Zugang:
+
+ftp w00b6ff8.kasserver.com
+Connected to w00b6ff8.kasserver.com.
+220 FTP on dd52020.kasserver.com ready
+Name (w00b6ff8.kasserver.com:heise): f014b242
+331 Password required for f014b242
+Password:
+230 User f014b242 logged in
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> dir
+200 PORT command successful
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   2 f014b242 w00b6ff8     4096 Mar 23 19:15 .
+drwxr-xr-x   2 f014b242 w00b6ff8     4096 Mar 23 19:15 ..
+226 Transfer complete
+ftp> quit
+221 Goodbye.
+
+
+
+
