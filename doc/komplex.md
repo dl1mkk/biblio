@@ -71,3 +71,25 @@ h.show()
 #
 #
 ```
+#### Die Methoden im Einzelnen:
+##### def error(self,msg=None,file=None,line=None):
+##### def prolog(self,title=None):
+##### def z(self,x,y):
+##### def CheckButtons(self,deft=None,defb=None):
+##### def Div(self):
+##### def Div_End(self):
+##### def Field(self,deff=None):
+##### def Form(self,deff=None):
+##### def Form_End(self):
+##### def Form_Self(self):
+##### def Header(self,defh):
+##### def Line(self,deft=None,defp=None,defi=None,f="",l=""):
+##### def Line2(self,deft=None,defp=None,defi1=None,defi2=None,defz=None,f="",l=""):
+##### def Line_Rev(self,deft=None,defi=None,defp=None,f="",l=""):
+##### def Page_End(self):
+##### def Prompt(self,defp=None):
+##### def Row_End(self):
+##### def Table(self,deft=None):
+##### def Table_End(self):
+##### def _Field(self,deff=None):_ 
+##### def _Header(self):_
