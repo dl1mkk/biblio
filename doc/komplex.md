@@ -7,7 +7,7 @@
   So können übersichtliche Seiten-Definitionen gestaltet werden:
   
   ```
-  #!/bin/python3
+#!/bin/python3
 #
 import apphtml as hh
 #
@@ -39,11 +39,10 @@ i004 = { "tdclass":"right", "tdwidth":"5%", "input":"on", "type":"submit", "clas
 i005 = { "tdclass":"right", "tdwidth":"5%", "input":"on", "type":"submit", "class":"nav",
          "action":"adm-rollout.php", "value":"ADMROLL", "tabindex":"5" }
 #
-#
 t001 = { "class":"left", "width":"80%" }
 t002 = { "class":"center", "width":"80%" }
 #
-[h.prolog(title="ADMSTART")](def prolog(self,title=None):)
+h.prolog(title="ADMSTART")
 h.Header(defh=h001)
 h.include("php/adm-start-p01.php");
 #
@@ -64,15 +63,23 @@ h.Table_End()
 h.Form_End()
 h.Page_End()
 h.show()
-#
-#
-#
-#
-#
-#
 ```
 #### Die Methoden im Einzelnen:
+  Es ist wichtig, zu verstehen, dass die Basis-Methoden (iplus, isub, indent, out, show, include, echo, echoi,
+  echof, value) Teil der hier vorgestellten komplexeren Methoden sind. Über das Argument _self_ werden diese
+  Methoden intern aufgerufen.
 ##### def error(self,msg=None,file=None,line=None):
+  Um beim Parsieren der komplexen Datenstrukturen, die als konstante _Directory-Listen_ übergeben werden, sicher
+  gehen zu können, dass alles in Ordnung ist, müssen hier und da übergebene Argumente in den Methoden überprüft
+  werden. Stellt sich dabei ein Fehler heraus, kann mit der __Variablen file__ und einer zuätzlichen Kennung
+  eine Fehler-Position im Traceback der betreffenden Python3-Datei ausgegeben werden.
+  
+  Die Argumente der Methode __error__ sind:
+  . self -------> Die Instanz der Klasse __apphtml__
+  . msg --------> Die Fehlermeldung selbst
+  . file -------> Der Dateiname, wie im Kopf der *__template-Datei__* defintiert
+  . line -------> Die Fehler-Position
+  
 ##### def prolog(self,title=None):
 ##### def z(self,x,y):
 ##### def CheckButtons(self,deft=None,defb=None):
