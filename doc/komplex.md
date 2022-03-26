@@ -81,7 +81,10 @@ h.show()
   + line -------> Die Fehler-Position
   
 ##### def prolog(self,title=None):
+  Diese Methode erzeugt den Datei-Prolog bis zum HTML-tag `<title>...</title>` und liefert so gleichzeitig die
+  Verbindung zur Datenbank _MYSQL_ und die Instanz der PHP-Klasse _Log(...)_.
 ##### def z(self,x,y):
+  
 ##### def CheckButtons(self,deft=None,defb=None):
 ##### def Div(self):
 ##### def Div_End(self):
