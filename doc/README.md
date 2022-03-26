@@ -42,5 +42,5 @@
   Diese Methode gibt das Argument _t_ als Ausgabe-Kommando für __/dev/stdout__ in einem String
   zurück. Das Argument __t__ muss vom __type(str)__ sein!
 ### Komplexe Methoden in apphtml.py
-  Hier werden die Komplexen Methoden in der Klasse __apphtml.py__ Beschreieben.
+  Hier werden die [Komplexen Methoden](doc/komplex.md) in der Klasse __apphtml.py__ Beschreieben.
   
