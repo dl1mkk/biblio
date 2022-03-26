@@ -86,9 +86,9 @@ cd $dest
 sudo chown -fR www-data:www-data *
 cd $retpath
 datum=`date +'%Y%m%d-%H%M%S'`
-export datei='/home/heise/Nextcloud/backup/zend-oben.tgz'
+export datei='/home/heise/Nextcloud/backup/zend-2.3.1.a.tgz'
 cd $pub
 tar cf $datei --exclude="./.git/*" $base/*.css $base/footer.php $base/prolog.php $base/class $base/py $base/sig \
        $base/tmp ~/bin/act ~/bin/backup-zend ~/.bashrc 
-cp $back/zend-oben.tgz $back/zend-install.tgz
-cp $back/zend-oben.tgz ~/next/backup/zend-install.tgz
+cp $back/zend-2.3.1.a.tgz $back/zend-install.tgz
+cp $back/zend-2.3.1.a.tgz ~/next/backup/zend-install.tgz
