@@ -43,7 +43,7 @@ i005 = { "tdclass":"right", "tdwidth":"5%", "input":"on", "type":"submit", "clas
 t001 = { "class":"left", "width":"80%" }
 t002 = { "class":"center", "width":"80%" }
 #
-h.prolog(title="ADMSTART")
+[h.prolog(title="ADMSTART")](def prolog(self,title=None):)
 h.Header(defh=h001)
 h.include("php/adm-start-p01.php");
 #
