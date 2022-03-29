@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "#!/bin/python3" >$1.py
+cp template.php php/$1-p01.php
+

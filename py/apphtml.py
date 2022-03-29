@@ -1,149 +1,187 @@
 #!/bin/python3
 import time
 class apphtml:
-   #
-   page = list(' ')           # DAS LEERE ARRAY PAGE
-   ind = 0;                   # DIE ANZAHL DER EINRÜCKUNG
-   tself = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>'
-   tformself = '<form id="header" class="fix" action="'+tself+'" method="post" enctype="UTF-8">'
-   #
-   #  ERZEUGT DAS OBJEKT DER KLASSE APPHTML
-   #  =====================================
-   #
-   def __init__(self):
-      pass;
-   #
-   # EINE STUFE EINRÜCKEN MEHR
-   # =========================
-   #
-   def iplus(self):
-      self.ind += 1;
-      pass
-   #
-   # EINE STUFE EINRÜCKEN WENIGER
-   # ============================
-   #
-   def isub(self):
-      if self.ind > 0:  # PRÜFT, OB NOCH EINGERÜCKT WERDEN KANN
-         self.ind -= 1;
-      pass
-   #
-   # ERZEUGT DIE ANZAHL LEERZEICHEN FÜR DIE STUFE DES EINRÜCKENS
-   # ===========================================================
-   #
-   def indent(self):
-      t=''
-      for i in range(self.ind):
-         t=t+'   '
-      return t;
+    #
+    page = list(' ')           # DAS LEERE ARRAY PAGE
+    ind = 0;                   # DIE ANZAHL DER EINRÜCKUNG
+    tself = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>'
+    tformself = '<form id="header" class="fix" action="'+tself+'" method="post" enctype="UTF-8">'
+    #
+    """
+        Erzeugt die Instanz der Klasse apphtml selbst.
+        Aufruf:
+            from . import apphtml as ht
+            hh = ht.apphtml()
+    """
+    #
+    def __init__(self):
+        pass;
+    #
+    """
+        Einrücken des Ausgabe-Kontextes
+        self.ind wird um +1 erhöht, wirkt auf self.out()
+    """
+    #
+    def iplus(self):
+        self.ind += 1;
+        pass
+    #
+    """
+        Ausrücken des Ausgabekontext solange self.ind > 0
+        self.ind wird um -1 verringert, wirkt auf self.out()
+    """
+    #
+    def isub(self):
+        if self.ind > 0:  # PRÜFT, OB NOCH EINGERÜCKT WERDEN KANN
+            self.ind -= 1;
+        pass
+    #
+    """
+        Leerzeichen-String für das Einrücken herstellen
+        wirkt auf self.out()
+    """
+    #
+    def indent(self):
+        t=''
+        for i in range(self.ind):
+            t=t+'   '
+        return t;
    #
    # ERZEUGT DEN OUTPUT IN DAS ARRAY PAGE
    # ====================================
    #
-   def out(self,arg):
-      t=self.indent()+arg
-      g=len(self.page)
-      self.page.insert(len(self.page),str(t))
-      pass;
+    def out(self,arg):
+        t=self.indent()+arg
+        g=len(self.page)
+        self.page.insert(len(self.page),str(t))
+        pass;
    #
    #
-   def Space(self,width):
-      t = '<td class="left" width="'+width+'">&nbsp;</td>'
-      self.out(t)
-      pass
+    def Space(self,width):
+        t = '<td class="left" width="'+width+'">&nbsp;</td>'
+        self.out(t)
+        pass
    #
    #  ERZEUGT EINEN PHP-INCLUDE-AUFRUF
    #  ================================
    #
-   def include(self,m=None):
-      f="apphtml.py"
-      l="include"
-      if m is None:
-         self.error("Fehler: Datei-Argument 'm' nicht gefunden.",f,l)
-      fobj = open(m,"r")
-      for line in fobj:
-         wlen = len(line)-1
-         ws = str(line[0:wlen])
-         if ws > "":
-            self.out(ws)
-      fobj.close()
-      pass
-   #
-   def show(self):
-      for x in self.page:
-         if x != ' ':
-            print(x)
-   #
-   def echo(self,t):
-      return '<?php echo $'+t+'; ?>'
-   #
-   def echof(self,t):
-      return '<?php if ($'+t+' != 0) echo $'+t+'; else echo "0.00"; ?>'
-   #
-   def echoi(self,t):
-      return '<?php if ($'+t+' != 0) echo $'+t+'; else echo "0"; ?>'
-   #
-   def value(self,t):
-      return '<?php echo "'+t+'"; ?>'
-   #
-   #  ERZEUGT DEN <head> EINER HTML-DATEI
-   #  ===================================
-   #
-   def head(self,title=None):
-      self.out('<title>'+title+'</title>')
-      descr="HTML CONTENT GENERATOR ZEND 2.1"
-      keywd="Bibliothek,Software,Verwaltung"
-      d=time.asctime()
-      t="<head>"
-      self.out(t)
-      self.iplus()
-      t1='<meta name="date" content="'+d+'">'
-      t2='<meta name="author" content="Veit Heise, PQM Consulting, Germany">'
-      t3='<meta name="copyright" content="(C)2021 by Veit Heise. All rights reserved.">'
-      t4='<meta name="keywords" content="'+keywd+'">'
-      t5='<meta name="description" content="'+descr+'">'
-      t6='<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">'
-      t7='<meta name="generator" content="frame#2/composer Version 1.4.0">'
-      t8='<meta http-equiv="content-type" content="text/html; charset=UTF-8">'
-      t9='<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">'
-      t10='<meta http-equiv="content-style-type" content="text/css">'
-      t11='<meta http-equiv="expires" content="0">'
-      t12='<link href="standard.css" rel="stylesheet" type="text/css">'
-      t13='<link href="w3cssconf.css" rel="stylesheet" type="text/css">'
-      self.out(t1)
-      self.out(t2)
-      self.out(t3)
-      if (keywd>""):
-         self.out(t4)
-      if (descr>""):
-         self.out(t5)
-      self.out(t6)
-      self.out(t7)
-      self.out(t8)
-      self.out(t9)
-      self.out(t10)
-      self.out(t11)
-      self.out(t12)
-      self.out(t13)
-      self.isub()
-      self.out("</head>")
-      self.out("<body>")
-      self.iplus()
-      pass
-   #
-   #  ERZEUGT DEN PROLOG FÜR DAS HTML-DOKUMENT
-   #  ========================================
-   #
-   def prolog(self,title=None):
-      self.include(m="prolog.php")
-      self.iplus()
-      self.head(title)
-      pass
-   #
-   # ERZEUGT EINE FEHLERMELDUNG UND BRICHT DIE ERZEUGUNG DER HTML-SEITE AB
-   # =====================================================================
-   #
-   def error(self,msg=None,file=None,line=None):
+    def include(self,m=None):
+        f="apphtml.py"
+        l="include"
+        if m is None:
+            self.error("Fehler: Datei-Argument 'm' nicht gefunden.",f,l)
+        fobj = open(m,"r")
+        for line in fobj:
+            wlen = len(line)-1
+            ws = str(line[0:wlen])
+            if ws > "":
+                self.out(ws)
+        fobj.close()
+        pass
+    #
+    """
+        Dies ist die Ausgabe des HTML5-Puffers self.page
+        es wird der gesamte Puffer auf /dev/stdout ausgegeben
+    """
+    #
+    def show(self):
+        for x in self.page:
+            if x != ' ':
+                print(x)
+    #
+    """
+        Erzeugt einen String für die Ausgabe einer Variablen in PHP,
+        die auf das Gerät /dev/stdout umgeleitet wird.
+    """
+    #
+    def echo(self,t):
+        return '<?php echo $'+t+'; ?>'
+    #
+    """
+        Erzeugt einen String für die Ausgabe einer Float-Variablen in PHP
+        die auf das Gerät /dev/stdout umgeleitet wird. Ist die Variable
+        0, 0.0 oder "", dann wird "0.00" ausgegeben.
+    """
+    #
+    def echof(self,t):
+        return '<?php if ($'+t+' != 0) echo $'+t+'; else echo "0.00"; ?>'
+    #
+    """
+        Erzeugt einen String für die Ausgabe einer Integer-Variablen in PHP
+        die auf das Gerät /dev/stdout umgeleitet wird. Ist die Variable
+        0 oder "", dann wird "0" ausgeben.
+    """
+    #
+    def echoi(self,t):
+        return '<?php if ($'+t+' != 0) echo $'+t+'; else echo "0"; ?>'
+    #
+    """
+        Erzeugt einen String für die Ausgabe einer Variablen in PHP,
+        deren NAME im Argument @t übergeben wird.
+    """
+    #
+    def value(self,t):
+        return '<?php echo "'+t+'"; ?>'
+    #
+    """
+        Erzeugt die <head>...</head> Sektion im HTML-Kontext.
+    """
+    #
+    def head(self,title=None):
+        self.out('<title>'+title+'</title>')
+        descr="HTML CONTENT GENERATOR ZEND 2.1"
+        keywd="Bibliothek,Software,Verwaltung"
+        d=time.asctime()
+        t="<head>"
+        self.out(t)
+        self.iplus()
+        t1='<meta name="date" content="'+d+'">'
+        t2='<meta name="author" content="Veit Heise, PQM Consulting, Germany">'
+        t3='<meta name="copyright" content="(C)2021 by Veit Heise. All rights reserved.">'
+        t4='<meta name="keywords" content="'+keywd+'">'
+        t5='<meta name="description" content="'+descr+'">'
+        t6='<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">'
+        t7='<meta name="generator" content="frame#2/composer Version 1.4.0">'
+        t8='<meta http-equiv="content-type" content="text/html; charset=UTF-8">'
+        t9='<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">'
+        t10='<meta http-equiv="content-style-type" content="text/css">'
+        t11='<meta http-equiv="expires" content="0">'
+        t12='<link href="standard.css" rel="stylesheet" type="text/css">'
+        t13='<link href="w3cssconf.css" rel="stylesheet" type="text/css">'
+        self.out(t1)
+        self.out(t2)
+        self.out(t3)
+        if (keywd>""):
+            self.out(t4)
+        if (descr>""):
+            self.out(t5)
+        self.out(t6)
+        self.out(t7)
+        self.out(t8)
+        self.out(t9)
+        self.out(t10)
+        self.out(t11)
+        self.out(t12)
+        self.out(t13)
+        self.isub()
+        self.out("</head>")
+        self.out("<body>")
+        self.iplus()
+        pass
+    #
+    #  ERZEUGT DEN PROLOG FÜR DAS HTML-DOKUMENT
+    #  ========================================
+    #
+    def prolog(self,title=None):
+        self.include(m="prolog.php")
+        self.iplus()
+        self.head(title)
+        pass
+    #
+    # ERZEUGT EINE FEHLERMELDUNG UND BRICHT DIE ERZEUGUNG DER HTML-SEITE AB
+    # =====================================================================
+    #
+    def error(self,msg=None,file=None,line=None):
       self.out('### FEHLER in Datei ###')
       if file:
          if line:
@@ -158,20 +196,20 @@ class apphtml:
          self.show()
          exit();
       
-   #
-   #  PRUEFT AUF DAS VORHANDENSEIN EINES DICTIONARY-EINTRAGS
-   #  ======================================================
-   #
-   def z(self,x,y):
+    #
+    #  PRUEFT AUF DAS VORHANDENSEIN EINES DICTIONARY-EINTRAGS
+    #  ======================================================
+    #
+    def z(self,x,y):
       try:
          return x[y]
       except:
          return None
-   #
-   # ERZEUGT CHECKBUTTON META
-   # ========================
-   #
-   def CheckButtons(self,deft=None,defb=None):
+    #
+    # ERZEUGT CHECKBUTTON META
+    # ========================
+    #
+    def CheckButtons(self,deft=None,defb=None):
       f="apphtml.py"
       l="CheckButtons"
       if deft is None:
@@ -207,26 +245,26 @@ class apphtml:
       
       
       pass
-   #
-   # ERZEUGT DIV TAG
-   # ===============
-   #
-   def Div(self):
-      self.out('<div>')
-      pass
-   #
-   # ERZEUGT /DIV TAG
-   # ================
-   #
-   def Div_End(self):
+    #
+    # ERZEUGT DIV TAG
+    # ===============
+    #
+    def Div(self):
+       self.out('<div>')
+       pass
+    #
+    # ERZEUGT /DIV TAG
+    # ================
+    #
+    def Div_End(self):
       self.isub()
       self.out('</div>')
       pass
-   #
-   # ERZEUGT META FIELD
-   # ==================
-   #
-   def Field(self,deff=None):
+    #
+    # ERZEUGT META FIELD
+    # ==================
+    #
+    def Field(self,deff=None):
       f="apphtml.py"
       l="Field"
       if deff is None:
@@ -395,10 +433,10 @@ class apphtml:
          self.out(t)
          pass
       pass
-   #
-   # ERZEUGT FORM TAG
-   #
-   def Form(self,deff=None):
+    #
+    # ERZEUGT FORM TAG
+    #
+    def Form(self,deff=None):
       f="apphtml.py"
       l="Form"
       if deff is None:
@@ -442,36 +480,36 @@ class apphtml:
          self.out(t)
          self.iplus()
          pass
-   #
-   # ERZEUGT /FORM TAG
-   # =================
-   #
-   def Form_End(self):
-      self.isub()
-      self.out('</form>')
-      pass
-   #
-   # ERZEUGT FORM_SELF TAG
-   # =====================
-   #
-   def Form_Self(self):
+    #
+    # ERZEUGT /FORM TAG
+    # =================
+    #
+    def Form_End(self):
+       self.isub()
+       self.out('</form>')
+       pass
+    #
+    # ERZEUGT FORM_SELF TAG
+    # =====================
+    #
+    def Form_Self(self):
       self.iplus()
       self.out(self.tformself)
       self.iplus()
       pass
-   #
-   # ERZEUGT HEADER TAG
-   # ==================
-   #
-   def _Header(self):
+    #
+    # ERZEUGT HEADER TAG
+    # ==================
+    #
+    def _Header(self):
       self.out('<header>')
       self.iplus()
       pass
-   #
-   # ERZEUGT HEADER META
-   # ===================
-   #
-   def Header(self,defh):
+    #
+    # ERZEUGT HEADER META
+    # ===================
+    #
+    def Header(self,defh):
       h01=self.z(defh,"title")
       h02=self.z(defh,"sub")
       h03=self.z(defh,"back")
@@ -517,11 +555,11 @@ class apphtml:
       self.out('<aside>')
       self.iplus()
       pass     
-   #
-   # ERZEUGT META LINE
-   # =================
-   #
-   def Line(self,deft=None,defp=None,defi=None,f="",l=""):
+    #
+    # ERZEUGT META LINE
+    # =================
+    #
+    def Line(self,deft=None,defp=None,defi=None,f="",l=""):
       if deft is None:
          self.error("Argument 'deft' fehlt in Line().",f,l)
          pass
@@ -536,9 +574,9 @@ class apphtml:
       self.Field(defi)
       self.Row_End()
       pass
-   #
-   #
-   def Line2(self,deft=None,defp=None,defi1=None,defi2=None,defz=None,f="",l=""):
+    #
+    #
+    def Line2(self,deft=None,defp=None,defi1=None,defi2=None,defz=None,f="",l=""):
       if deft is None:
          self.error("Argument 'deft' fehlt in Line2().",f,l)
          pass
@@ -562,7 +600,7 @@ class apphtml:
       self.Row_End()
       pass
 
-   def Line_Rev(self,deft=None,defi=None,defp=None,f="",l=""):
+    def Line_Rev(self,deft=None,defi=None,defp=None,f="",l=""):
       if deft is None:
          self.error("Argument 'deft' fehlt in Line().",f,l)
          pass
@@ -578,11 +616,11 @@ class apphtml:
       self.Row_End()
       pass
       
-   #
-   # ERZEUGT META PAGE_END
-   # =====================
-   #
-   def Page_End(self):
+    #
+    # ERZEUGT META PAGE_END
+    # =====================
+    #
+    def Page_End(self):
       self.isub()
       self.out('</aside>')
       self.out('<footer>')
@@ -603,11 +641,11 @@ class apphtml:
       self.out('-->')
       self.out(' ')
       pass
-   #
-   # ERZEUGT META PROMPT
-   # ===================
-   #
-   def Prompt(self,defp=None):
+    #
+    # ERZEUGT META PROMPT
+    # ===================
+    #
+    def Prompt(self,defp=None):
       f="apphtml.py"
       l="Prompt"
       if defp is None:
@@ -629,11 +667,11 @@ class apphtml:
       t=t+'</td>'
       self.out(t)
       pass
-   #
-   # ERZEUGT ROW META
-   # ================
-   #
-   def Row(self,defr=None):
+    #
+    # ERZEUGT ROW META
+    # ================
+    #
+    def Row(self,defr=None):
       if defr is None:
          defr={ "class":"left", "width":"80%" }
       z01 = self.z(defr,"class")
@@ -650,19 +688,19 @@ class apphtml:
       self.out(t)
       self.iplus()
       pass
-   #
-   # ERZEUGT ROW_END META
-   # ====================
-   #
-   def Row_End(self):
+    #
+    # ERZEUGT ROW_END META
+    # ====================
+    #
+    def Row_End(self):
       self.isub()
       self.out('</tr>')
       pass
-   #
-   # ERZEUGT TABLE TAG
-   # =================
-   #
-   def Table(self,deft=None):
+    #
+    # ERZEUGT TABLE TAG
+    # =================
+    #
+    def Table(self,deft=None):
       if deft is None:
          self.out('<table class="center" width="80%">')
          self.iplus()
@@ -712,16 +750,16 @@ class apphtml:
          self.out(t)
          self.iplus()
          pass
-   #
-   # ERZEUGT /TABLE TAG
-   # ==================
-   #
-   def Table_End(self):
+    #
+    # ERZEUGT /TABLE TAG
+    # ==================
+    #
+    def Table_End(self):
       self.isub()
       self.out('</table>')
       pass      
       
-   def _Field(self,deff=None):
+    def _Field(self,deff=None):
       f="apphtml.py"
       l="Field"
       if deff is None:
